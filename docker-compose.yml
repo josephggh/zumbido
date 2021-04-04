@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+    backend:
+        image: php:7-alpine
+        working_dir: /var/www
+        command: php -S 0.0.0.0:8080 -t public
+        ports:
+            - 8080:8080
+        volumes:
+            - ./backend:/var/www
+
+    frontend:
+        image: httpd:2.4-alpine
+        ports:
+            - 80:80
+        volumes:
+            - ./frontend/public:/usr/local/apache2/htdocs/
